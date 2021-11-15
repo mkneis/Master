@@ -6,4 +6,4 @@ donde se pone en practica lo aprendido durante el modulo a través de la impleme
 
 ![Screenshot](modelo.Entidad-Relacion.png)
 
-<img src="https://github.com/your_image.png" alt="Entidad-Relacion.png" width="250"/>
+<img src="https://github.com/your_image.png" alt="Entidad-Relacion" width="250"/>
