@@ -5,3 +5,5 @@ donde se pone en practica lo aprendido durante el modulo a través de la impleme
 "Tiendas de Aplicaciones" guardar información valiosa
 
 ![Screenshot](modelo.Entidad-Relacion.png)
+
+<img src="https://github.com/your_image.png" alt="Entidad-Relacion.png" width="250"/>
