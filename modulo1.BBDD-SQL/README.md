@@ -4,6 +4,6 @@ Proyecto final del primer modulo dentro del master “Big Data & Data Science”
 donde se pone en practica lo aprendido durante el modulo a través de la implementación de una a bases de datos que le permita a las 
 "Tiendas de Aplicaciones" guardar información valiosa
 
-![Screenshot](modelo.Entidad-Relacion.png)
+![Screenshot](modelo.Entidad-Relacion.png){ width=50% }
 
 <img src="https://github.com/your_image.png" alt="Entidad-Relacion" width="250"/>
