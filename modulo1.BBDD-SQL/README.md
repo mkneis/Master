@@ -4,4 +4,4 @@ Proyecto final del primer modulo dentro del master “Big Data & Data Science”
 donde se pone en practica lo aprendido durante el modulo a través de la implementación de una a bases de datos que le permita a las 
 "Tiendas de Aplicaciones" guardar información valiosa
 
-<img src="https://github.com/mkneis/Master/blob/main/modulo1.BBDD-SQL/modelo.Entidad-Relacion.png" alt="Entidad-Relacion" width="1000"/>
+<img src="https://github.com/mkneis/Master/blob/main/modulo1.BBDD-SQL/modelo.Entidad-Relacion.png" alt="Entidad-Relacion" width="500"/>
