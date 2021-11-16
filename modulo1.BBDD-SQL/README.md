@@ -6,4 +6,4 @@ donde se pone en practica lo aprendido durante el modulo a través de la impleme
 
 ![Screenshot](modelo.Entidad-Relacion.png){ width=50% }
 
-<img src="https://github.com/your_image.png" alt="Entidad-Relacion" width="250"/>
+<img src="https://github.com/mkneis/Master/blob/main/modulo1.BBDD-SQL/modelo.Entidad-Relacion.png" alt="Entidad-Relacion" width="250"/>
