@@ -1,17 +1,3 @@
----
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .Rmd
-      format_name: rmarkdown
-      format_version: '1.2'
-      jupytext_version: 1.11.2
-  kernelspec:
-    display_name: R
-    language: R
-    name: ir
----
-
 <!-- #region nbgrader={"grade": false, "grade_id": "cell-bd0b11511d1e9d9c", "locked": true, "schema_version": 3, "solution": false, "task": false} -->
 # Relación de ejercicios 3
 
