@@ -1,3 +1,0 @@
-*.js linguist-vendored
-*.sql linguist-detectable=true
-*.rmd linguist-detectable=true
