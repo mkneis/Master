@@ -1,4 +1,279 @@
 <!-- #region nbgrader={"grade": false, "grade_id": "cell-bd0b11511d1e9d9c", "locked": true, "schema_version": 3, "solution": false, "task": false} -->
+# Relación de ejercicios 2
+
+En estos ejercicios practicaremos la elaboración de funciones para reutilizar nuestro código, y el uso de las funciones de la familia *apply* (sapply, lapply, apply). 
+
+### Las funciones NUNCA deben hacer print() ni mostrar nada por pantalla, sino devolver el resultado del cálculo utilizando return.
+<!-- #endregion -->
+
+<!-- #region nbgrader={"grade": false, "grade_id": "cell-6931830012e6c23e", "locked": true, "schema_version": 3, "solution": false, "task": false} -->
+**INSTRUCCIONES**: en cada trozo de código debes responder a la pregunta formulada, asegurándote de que el resultado queda guardado en la(s) variable(s) que por defecto vienen inicializadas a `NULL`. No se necesita usar variables intermedias, pero puedes hacerlo siempre que el resultado final del cálculo quede guardado exactamente en la variable que venía inicializada a NULL (debes reemplazar NULL por el código R necesario, pero nunca cambiar el nombre de esa variable). **El código de tu solución puede ocupar tantas líneas como necesites, pero deben estar situadas entre la línea "NO MODIFICAR ESTA LÍNEA ..." y la línea "FIN SOLUCION". Ninguna de esas dos líneas debe ser modificada bajo ningún concepto.** En caso contrario tu solución no será puntuada.
+
+Después de cada ejercicio verás varias líneas de código ya hechas. Ejecútalas todas (no modifiques su código) y te dirán si tu solución es correcta o no. Si la solución es correcta, no se mostrará nada, pero si es incorrecta, verás un error indicando cuál es el test que tu solución no pasa. Además de esas pruebas, se realizarán algunas más (ocultas) a la hora de puntuar el ejercicio, pero si tu código pasa con éxito las líneas que ves, puedes estar bastante seguro de que tu solución es correcta. Asegúrate de que, al menos, todas las comprobaciones indican que tu solución es correcta antes de subir el ejercicio a la plataforma.
+
+Una vez finalizada la actividad, guarda tu fichero en RStudio, después ciérralo, vuélvelo a abrir y ejecútalo completo, y asegúrate de que no se lanza ningún error. De esta manera comprobarás que no has olvidado nada y que es posible ejecutarlo completo desde 0 y sin errores. **No se corregirá ningún fichero que tenga errores de sintaxis y no se pueda ejecutar completo**. No pasa nada si alguna de las comprobaciones lanza errores por ser incorrecta, pero el código de la solución de cada ejercicio no puede tener errores de sintaxis. Es lo mínimo que se debe exigir.
+
+**RECUERDA SUBIR CADA UNO DE LOS FICHEROS .Rmd TAL CUAL (sueltos), SIN COMPRIMIR Y SIN CAMBIARLES EL NOMBRE. NO SUBAS NADA MÁS QUE LOS FICHEROS .Rmd (no subas ningún HTML, ni ningún fichero ZIP ni similar)**. La plataforma ya los separa automáticamente en carpetas con vuestro nombre completo, por lo que no es necesario que se lo pongas al fichero.
+<!-- #endregion -->
+
+<!-- #region nbgrader={"grade": false, "grade_id": "cell-42564346aa5f4ad2", "locked": true, "schema_version": 3, "solution": false, "task": false} -->
+**Ejercicio 1 (3 puntos).** Crear una función que devuelva TRUE si un número es **múltiplo** de alguno de los elementos de un vector de enteros. Deberá recibir como argumentos el vector y el número. Ser múltiplo implica que el número es mayor o igual que el elemento del vector que estemos comprobando, y además el resto de dividir el número entre el elemento del vector sea 0. El operador que calcula el resto de la división entera de dos números es `%%` y ya está vectorizado. Se harán **tres versiones** distintas de esta función: 
+
+- Resolver el ejercicio usando un bucle *while* dentro de la función. La función debe llamarse `multiplo.vector.while` 
+- Resolver el ejercicio usando un bucle *for* dentro de la función. La función ahora se llamará `multiplo.vector.for`
+- Resolver el ejercicio usando dentro de la función solamente operaciones aritméticas sencillas que ya están vectorizadas en R, sin utilizar ningún bucle. La función ahora se llamará `multiplo.vector.op`
+
+Las tres funciones deben pasar todos los casos de prueba que ves a continuación.
+<!-- #endregion -->
+
+```{r nbgrader="{'grade': False, 'grade_id': 'ej1-respuesta', 'locked': False, 'schema_version': 3, 'solution': True, 'task': False}"}
+# NO MODIFICAR ESTA LINEA ej1-respuesta
+
+#' Devuelve TRUE si un número es múltiplo de alguno de los elementos de un vector de enteros
+#' 
+#' @param v Vector de enteros.
+#' @param numero Número entero del que se busca si es múltiplo de alguno de los números del vector v.
+#' @return TRUE o FALSE según si el número es múltiplo de alguno de los números del vector v.
+multiplo.vector.while <- function(v, numero){
+  largo<-length(v)
+  lugar<-1
+  resultado<- FALSE  
+  while(lugar<=largo){
+      if(v <= numero && numero%%v == 0){
+        resultado<-TRUE
+        break}
+      else{
+        resultado<-FALSE
+        lugar<- lugar+1
+    }}
+return(resultado)
+}
+
+#' Devuelve TRUE si un número es múltiplo de alguno de los elementos de un vector de enteros
+#' 
+#' @param v Vector de enteros.
+#' @param numero Número entero del que se busca si es múltiplo de alguno de los números del vector v.
+#' @return TRUE o FALSE según si el número es múltiplo de alguno de los números del vector v.
+multiplo.vector.for <- function(v, numero){
+  resultado<- FALSE  
+  for (numeros in v){
+    if(numeros <= numero && numero%%numeros == 0){
+        resultado<-TRUE
+        break}
+    else{
+        resultado<-FALSE
+    }}
+return(resultado)
+}
+
+#' Devuelve TRUE si un número es múltiplo de alguno de los elementos de un vector de enteros
+#' 
+#' @param v Vector de enteros.
+#' @param numero Número entero del que se busca si es múltiplo de alguno de los números del vector v.
+#' @return TRUE o FALSE según si el número es múltiplo de alguno de los números del vector v.
+multiplo.vector.op <- function(v, numero){
+    condicion1 <- v<=numero
+    condicion2 <- numero%%v == 0
+    mask <- as.numeric(condicion1 & condicion2)
+    sum.mask <- sum(mask)
+    resultado <- sum.mask > 0
+    return(resultado)
+}
+# FIN SOLUCION
+```
+
+
+```{r nbgrader="{'grade': True, 'grade_id': 'ej1-test', 'locked': True, 'points': 3, 'schema_version': 3, 'solution': False, 'task': False}"}
+stopifnot(multiplo.vector.while(c(5,8,34), 11) == FALSE)
+stopifnot(multiplo.vector.for(c(5,8,34),6) == FALSE)
+stopifnot(multiplo.vector.op(c(5,8,34),12) == FALSE)
+stopifnot(multiplo.vector.while(c(7,8,6), 7) == TRUE)
+stopifnot(multiplo.vector.for(c(7,8,6),14) == TRUE)
+stopifnot(multiplo.vector.op(c(7,8,6),12) == TRUE)
+stopifnot(multiplo.vector.while(c(-5),6) == FALSE)
+stopifnot(multiplo.vector.for(c(-5),6) == FALSE)
+stopifnot(multiplo.vector.op(c(-5),6) == FALSE)
+stopifnot(multiplo.vector.while(c(-5),10) == TRUE)
+stopifnot(multiplo.vector.for(c(-5),10) == TRUE)
+stopifnot(multiplo.vector.op(c(-5),10) == TRUE)
+
+check.not.command = function(command, f){ stopifnot(!any(sapply(deparse(f), function(x) grepl(command, x)))) }
+
+check.not.command("%in%", multiplo.vector.while)
+check.not.command("for", multiplo.vector.while)
+
+check.not.command("while", multiplo.vector.for)
+check.not.command("%in%", multiplo.vector.for)
+
+check.not.command("for", multiplo.vector.op)
+check.not.command("while", multiplo.vector.op)                                                                
+```
+
+<!-- #region nbgrader={"grade": false, "grade_id": "cell-9fd328c340860990", "locked": true, "schema_version": 3, "solution": false, "task": false} -->
+**Ejercicio 2 (2 puntos).** Crear una función `multk` que, dado un número entero positivo y un segundo argumento `k` también entero positivo, devuelva un vector con los números múltiplos de `k` que existen (empezando en 0) menores o iguales que el primer número. Por ejemplo, para el número 17 y tomando `k = 3`, la llamada a `multk(17, 3)` debe devolver el vector (0, 3, 6, 9, 12, 15) ya que tenemos que buscar los múltiplos de 3 menores o iguales que 17. **No está permitido usar ningún tipo de bucle ni tampoco sapply/lapply**. Consulta la ayuda de R acerca de la función `seq`.
+
+- Invocar a esta función sobre el vector `c(17, 21, 23, 25)` tomando siempre `k = 4` y sin usar un bucle sino sapply, y almacenar el resultado en la variable `multk.lista`. Recuerda que los argumentos adicionales a la función que estás pasando a `sapply` debes dárselos, con nombre, a `sapply` justo después de indicarle la función. ¿Qué tipo devuelve? ¿Por qué?
+
+- Incorporar a la función anterior un tercer argumento `n` que indique cuántos múltiplos queremos calcular como máximo. La nueva función debe llamarse `multk.max` y devolverá los `n` primeros múltiplos de `k` que sean menores o iguales que el número, empezando por el 0. El argumento `n` **no debe tener ningún valor por defecto**, es decir, ha de ser obligatorio. Volver a invocarla usando `sapply` sobre el vector `c(17, 21, 23, 25)` con `k = 4` (este valor no varía) y tomando siempre un máximo de `n = 3` múltiplos, y almacenar el resultado en la variable `multk.matriz`. Recuerda que los argumentos adicionales a la función que estás pasando a `sapply` debes dárselos, con nombre, a `sapply` a continuación de la función. ¿Qué tipo devuelve ahora? ¿Por qué es diferente al anterior?
+<!-- #endregion -->
+
+```{r nbgrader="{'grade': False, 'grade_id': 'ej2-respuesta', 'locked': False, 'schema_version': 3, 'solution': True, 'task': False}"}
+# NO MODIFICAR ESTA LINEA ej2-respuesta
+
+#' Entrega un vector con los números múltiplos de `k` que existen (empezando en 0) menores o iguales que el primer número.
+#' 
+#' @param numero Número entero positivo.
+#' @param k Número entero positivo.
+#' @return Vector con múltiplos de 'k' partiendo de 0, menores o iguales a 'numero'.
+multk <- function(numero, k){
+    seq(from = 0, to=numero, by=k)
+}
+
+#' Entrega un vector con los números múltiplos de `k` que existen (empezando en 0) menores o iguales que el primer número.
+#' 
+#' @param numero Número entero positivo.
+#' @param k Número entero positivo.
+#' @param n Número de múltiplos que se quiere calcular.
+#' @return Vector con múltiplos de 'k' partiendo de 0, menores o iguales a 'numero'.
+multk.max <- function(numero, k, n){
+    seq(from = 0, by = k, length.out = n)
+}
+
+multk.lista = sapply(c(17, 21, 23, 25), multk, k=4,simplify = FALSE)
+multk.matriz = sapply(c(17, 21, 23, 25), multk.max, k=4, n=3)
+# FIN SOLUCION
+```
+
+
+```{r nbgrader="{'grade': True, 'grade_id': 'ej2-test', 'locked': True, 'points': 2, 'schema_version': 3, 'solution': False, 'task': False}"}
+stopifnot(is.list(multk(24, 3)) == FALSE)
+stopifnot(all(multk(24, 3) == c(0, 3, 6, 9, 12, 15, 18, 21, 24)))
+
+check.not.command = function(command, f){ stopifnot(!any(sapply(deparse(f), function(x) grepl(command, x)))) }
+check.not.command("for", multk)  # no se pueden usar bucles en divisores ni en divisores.max
+check.not.command("while", multk)
+check.not.command("for", multk.max)
+check.not.command("while", multk.max)
+                               
+stopifnot(is.list(multk.lista)) # debe devolver una lista
+stopifnot(length(multk.lista) == 4) # debe devolver una lista
+stopifnot(all(sapply(multk.lista, length) == c(5, 6, 6, 7))) # longitudes correctas de cada vector devuelto por multk
+stopifnot(all(multk.max(24, 4, 4) == c(0, 4, 8, 12)))
+stopifnot(nrow(multk.matriz) == 3 & ncol(multk.matriz) == 4)  # debe ser una matriz 3x20
+stopifnot(all(multk.matriz[3, ] == rep(8, 4)))
+```
+
+<!-- #region nbgrader={"grade": false, "grade_id": "cell-d36fe7d577ef57ff", "locked": true, "schema_version": 3, "solution": false, "task": false} -->
+**Ejercicio 3 (2 puntos).** 
+
+* (a) **Sin utilizar bucles ni tampoco sapply/lapply**, crear una función `ponderada` que reciba un solo argumento, que será un vector, y calcule la **media ponderada** de los datos que hay en dicho vector, usando los propios datos también como pesos, tal como indica la siguiente fórmula:
+
+  - Dado un vector n-dimensional $v = (v_1, ..., v_n)$, se define la media ponderada de los datos como 
+  
+  $$M = \frac{w_1 v_1 + w_2 v_2 + ... + w_n v_n}{w_1 + w_2 + ... + w_n}$$ 
+  
+  siendo $(w_1, w_2, ..., w_n)$ los pesos asociados a cada dato. En nuestro caso particular tomaremos como pesos los propios datos, de forma que $w_i = v_i$ y por tanto:
+  
+  $$M = \frac{v_1^2 + v_2^2 + ... + v_n^2}{v_1 + v_2 + ... + v_n}$$
+  
+  Puedes elevar cada elemento de un vector a cierta potencia con el operador `**` (potencia) que ya está vectorizado. La función de R para sumar los elementos de un vector se denomina `sum`.
+* (b) Utilizando `apply`, invocar a la función `ponderada` sobre cada una de las filas de la matriz `m` definida a continuación, y almacenar el resultado en la variable `ponderada.filas`.
+<!-- #endregion -->
+
+```{r nbgrader="{'grade': False, 'grade_id': 'ej3-respuesta', 'locked': False, 'schema_version': 3, 'solution': True, 'task': False}"}
+# NO MODIFICAR ESTA LINEA ej3-respuesta
+
+#' calcula la media ponderada de los datos que hay en el vector entregado, usando los propios datos también como pesos.
+#' 
+#' @param v Vector de números.
+#' @return Media ponderada de los datos que hay en el vector entregado.
+ponderada <- function(v){
+    sum(v**2)/sum(v)
+}
+m = matrix(data = c(4, -1.2, 46, 78, -2.3, 8, -2.4, 92, 156, -4.6, 12, -3.6, 138, 234, -6.9), ncol = 5)
+ponderada.filas = apply(m, MARGIN = 1, ponderada)
+
+# FIN SOLUCION
+```
+
+
+```{r nbgrader="{'grade': True, 'grade_id': 'ej3-test', 'locked': True, 'points': 2, 'schema_version': 3, 'solution': False, 'task': False}"}
+check.not.command = function(command, f){ stopifnot(!any(sapply(deparse(f), function(x) grepl(command, x)))) }
+check.not.command("for", ponderada) # no se puede usar for ni while en la función geometrica
+check.not.command("while", ponderada)
+check.not.command("apply", ponderada)
+
+stopifnot(ponderada(c(2, 3, 1, 1, 1)) == 2)
+stopifnot(all(round(apply(m, MARGIN = 1, FUN = ponderada), 2) == c(118.17, 189.45, 133.22)))
+```
+
+<!-- #region nbgrader={"grade": false, "grade_id": "cell-be1bb1bb6a445cfc", "locked": true, "schema_version": 3, "solution": false, "task": false} -->
+**Ejercicio 4 (3 puntos).** Contestar a las siguentes cuestiones:
+
+- Crear una función `mayusculas` que reciba un vector `v` de cadenas de caracteres y un entero `n`, y devuelva otro vector de la misma longitud que `v` que sea una copia idéntica de `v` excepto en los `n` primeros elementos, los cuales deben haber sido pasados completamente a mayúsculas. Utilizar para ello la función `toupper(cad)` (consulta la ayuda de la función con `?toupper`). Aplicarla al vector `prueba` definido a continuación para comprobar su funcionamiento transformando los `n = 3` primeros elementos, y guardar el resultado en la variable `mayusculas.prueba`.
+  - Controlar el caso de que `n > length(v)` para que nunca se intenten pasar a mayúsculas más elementos de los que contiene el propio vector `v`. En dicho caso, simplemente se pasarán a mayúsculas todos los elementos de `v` aunque tenga menos de `n`.
+- Crear una función `mayusculas.niveles` que reciba un factor `f` y, utilizando la función `toupper`, renombre todos sus niveles para que se transformen en letras mayúsculas. La función debe devolver el factor con los niveles renombrados, **sin modificar los datos del factor** sino solamente los niveles (y esto automáticamente ya afectará a los datos). Aplicarla al factor `fac` creado a continuación y almacenar el resultado en la variable `fac.renom`.
+- Crear una función `mayusculas.columnas` que reciba un data.frame y renombre todas sus columnas, de manera que devuelva otro data.frame en el que todos los nombres de columnas estén ahora en mayúsculas. Utilizar una vez más la función `toupper` aplicada al vector de nombres de columnas, el cual debe ser extraído del dataframe con la función `colnames` de R. Almacenar el resultado devuelto en la variable `dat.renom`.
+<!-- #endregion -->
+
+```{r nbgrader="{'grade': False, 'grade_id': 'ej4-respuesta', 'locked': False, 'schema_version': 3, 'solution': True, 'task': False}"}
+# NO MODIFICAR ESTA LINEA ej4-respuesta
+
+#' Devuelva copia idéntica de `v` excepto en los `n` primeros elementos, los cuales seran pasados completamente a mayúsculas
+#' 
+#' @param v Vector de cadenas.
+#' @param n Números de elementos que seran ´pasados a mayúsculas.
+#' @return Vector con los primeros 'n' objetos en mayúsculas.
+mayusculas <- function(v, n){
+    copia <- v  
+    mayus <- toupper(copia[1:n])
+    copia[c(seq(1,n))] <- mayus
+    resultado <- copia[1:length(v)]
+    return(resultado)
+    }
+
+#' Renombra todos los niveles de un factor para que se transformen en letras mayúsculas.
+#' 
+#' @param f Vector de cadenas.
+#' @return Vector con los primeros 'n' objetos en mayúsculas.
+mayusculas.niveles <- function(f){
+    levels(f)<-toupper(levels(f))
+    return(f)
+    }
+
+#' Cambia los nombres de las columnas de un dataframe por mayúsculas.
+#' 
+#' @param df Dataframe.
+#' @return Copia de un dataframe con los nombres de las columnas en mayúsculas.
+mayusculas.columnas <- function(df){
+    colnames(df)<-toupper(colnames(df))
+    return(df)
+}
+
+fac = factor(c("Alto","Bajo", "Mediano", "Bajo", "Alto", "Alto", "Mediano"))
+prueba = c("Esto", "es", "un", "vector", "de", "cadenas", "de", "caracteres")
+dat = data.frame(Nombre = c("Juan", "Antoine", "Guido"), Edad = c(18, 35, 38), 
+                 Nacionalidad = c("Esp", "Fra", "Ita"))
+
+fac.renom = mayusculas.niveles(fac)
+dat.renom = mayusculas.columnas(dat)
+mayusculas.prueba = mayusculas(prueba,3)
+
+# FIN SOLUCION
+```
+
+
+```{r nbgrader="{'grade': True, 'grade_id': 'ej4-test', 'locked': True, 'points': 3, 'schema_version': 3, 'solution': False, 'task': False}"}
+stopifnot(length(mayusculas(prueba, 3)) == length(prueba))
+stopifnot(all(mayusculas(prueba, 3) == c('ESTO', 'ES', 'UN','vector','de','cadenas','de','caracteres')))
+renom = mayusculas.niveles(fac)
+df.renom = mayusculas.columnas(dat)
+stopifnot(all(renom == c("ALTO", "BAJO", "MEDIANO", "BAJO", "ALTO", "ALTO", "MEDIANO")))
+stopifnot(all(colnames(df.renom) == c("NOMBRE", "EDAD", "NACIONALIDAD")))
+stopifnot(nrow(df.renom) == 3 & ncol(df.renom) == 3)
+```
+
+<!-- #region nbgrader={"grade": false, "grade_id": "cell-bd0b11511d1e9d9c", "locked": true, "schema_version": 3, "solution": false, "task": false} -->
 # Relación de ejercicios 3
 
 En estos ejercicios practicaremos las operaciones para manejar DataFrames. En los primeros ejercicios no se puede utilizar ningún paquete de R adicional, pero en los últimos es obligatorio utilizar `dplyr`, tal como se indica en cada ejercicio.
