@@ -1,0 +1,39 @@
+Instrucciones de uso map - reduce
+
+1) Archivos "total_accs_edad.py", "2020_Accidentalidad.csv" y "mapreduce_instrucciones_de_uso.txt" deben encontrarse dentro de la misma carpeta
+
+2) Abrir línea de comandos
+
+3) Escribir lo siguiente dentro de la línea de comandos y pulsar enter: 
+   cd C:\"Dirección en donde se encuentran ubicados los archivos "total_accs_edad.py" y "2020_Accidentalidad.csv" dentro de su equipo"
+   
+   Ejemplo:
+   cd C:\Users\mknei\Documents\master big data\modulo5-Python\tarea
+
+4) Escribir o copy/paste lo siguiente y pulsar enter: python total_accs_edad.py -q 2020_Accidentalidad.csv
+
+5) Listo, en su pantalla, dentro de la línea de comandos, podrá observar los resultados obtenidos por el programa "total_accs_edad.py"
+
+   Ejemplo:
+	(base) C:\Users\mknei>cd C:\Users\mknei\Documents\master big data\modulo5-Python\tarea\entrega
+
+	(base) C:\Users\mknei\Documents\master big data\modulo5-Python\tarea\entrega>python total_accs_edad.py -q 2020_Accidentalidad.csv
+	[0,5]   [289,1]
+	[10,14] [305,0]
+	[15,17] [250,0]
+	[18,20] [978,0]
+	[21,24] [2226,2]
+	[25,29] [3437,3]
+	[30,34] [3362,2]
+	[35,39] [3332,8]
+	[40,44] [3399,6]
+	[45,49] [3084,4]
+	[50,54] [2547,1]
+	[55,59] [2077,1]
+	[6,9]   [175,0]
+	[60,64] [1272,1]
+	[65,69] [641,1]
+	[70,74] [427,1]
+	[75,100]        [657,4]
+
+(base) C:\Users\mknei\Documents\master big data\modulo5-Python\tarea\entrega>
